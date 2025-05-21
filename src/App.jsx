@@ -1,17 +1,19 @@
 import { Route, BrowserRouter, Routes } from "react-router-dom";
 import "remixicon/fonts/remixicon.css";
-import Notfound from "./components/Notfound.jsx";
-import Product from "./components/Product.jsx";
-import Orders from "./components/Orders.jsx";
-import AdminLayot from "./components/User/Layout";
-import Dashbord from "./components/Dashbord.jsx";
-import Payments from "./components/Payments.jsx"
-import Customer from "./components/Customer.jsx";
-import Setting from './components/Setting.jsx'
+import Notfound from "./components/Admin/Notfound.jsx";
+import Product from "./components/Admin/Product.jsx";
+import Orders from "./components/Admin/Orders.jsx";
+import AdminLayot from "./components/Admin/Layout.jsx";
+import Dashbord from "./components/Admin/Dashbord.jsx";
+import Payments from "./components/Admin/Payments.jsx"
+import Customer from "./components/Admin/Customer.jsx";
+import Setting from './components/Admin/Setting.jsx';
+import Auth from './components/Admin/Auth.jsx'
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+         <Route path="/admin/auth" element={<Auth />} />
         <Route path="/admin" element={<AdminLayot />}>
           <Route path="dashbord" element={<Dashbord/>} />
           <Route path="customer" element={<Customer/>} />
