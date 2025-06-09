@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Shopcontext } from "../context/ShopContext";
 
-const categories = ["Men", "Women", "Kids", "Accessories"];
+const categories = ["Men", "Women", "Kids", "Bottomwear"];
 
 const LatestCollection = () => {
   const navigate = useNavigate();
