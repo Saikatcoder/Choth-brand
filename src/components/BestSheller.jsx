@@ -8,13 +8,9 @@ const BestSheller = () => {
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    console.log("Products from context:", products);
-
     const bestProduct = products.filter((item) => item.bestseller);
-    console.log("Filtered Best Sellers:", bestProduct);
 
     setBestSeller(bestProduct.slice(0, 5));
-    console.log("Best Seller State Set:", bestProduct.slice(0, 5));
   }, [products]);
 
   return (
@@ -27,7 +23,7 @@ const BestSheller = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6 ">
         {bestSeller.map((item, index) => (
           <ProductItem
             key={index}
