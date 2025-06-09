@@ -12,8 +12,6 @@ const Product = () => {
       if (item._id === productId) {
         setProductData(item);
         setImage(item.image[0]);
-        console.log(item);
-
         return null;
       }
     });
@@ -54,8 +52,16 @@ const Product = () => {
             <img src={assets.star_dull_icon} alt="" />
             <p className="pl-2 text-white">{122}</p>
           </div>
-          <p className="mt-5 text-3xl font-medium text-white">{productData.price}</p>
-          <p className="mt-5 text-3xl font-medium text-gray-300">{productData.description}</p>
+         <p className="mt-5 text-3xl font-medium text-white">₹ {productData.price.toLocaleString("en-IN")}</p>
+          <p className="mt-5 sm:text-sm  font-medium text-gray-300">{productData.description}</p>
+          <div className="flex flex-col gap-4 my-8">
+            <p>Select Size</p>
+            <div className="flex gap-2">
+              {productData.sizes.map((item ,index)=>(
+                <button key={index} className={`border py-2 px-4 bg-gray-100 text-black`}>{item}</button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

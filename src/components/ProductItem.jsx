@@ -1,10 +1,8 @@
 import React from "react";
-import { useContext } from "react";
 import { Shopcontext } from "../context/ShopContext";
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ name, id, price, image }) => {
-  const { currency } = useContext(Shopcontext);
   return (
     <Link className="text-white cursor-pointer " to={`/product/${id}`}>
       <div className="overflow-hidden">
@@ -15,10 +13,7 @@ const ProductItem = ({ name, id, price, image }) => {
         />
       </div>
       <p className="pt-3 pb-1 text-sm">{name}</p>
-      <p className="text-sm font-medium">
-        {currency}
-        {price}
-      </p>
+      <p className="mt-5 text-xl font-medium text-white">₹ {price.toLocaleString("en-IN")}</p>
     </Link>
   );
 };
