@@ -7,7 +7,7 @@ import { FaAddressCard, FaPhoneAlt } from "react-icons/fa";
 import { Shopcontext } from "../context/ShopContext";
 
 const Navbar = () => {
-  const { setShowSearch } = useContext(Shopcontext);
+  const { setShowSearch,getCartCount} = useContext(Shopcontext);
   return (
     <>
       {/* Top Navbar */}
@@ -57,8 +57,8 @@ const Navbar = () => {
               className="w-5 min-w-5  filter invert"
               alt="Cart"
             />
-            <p className="absolute right-[-5px] bottom-[-6px] w-5 text-center leading-4 bg-yellow-500 text-white aspect-square rounded-full text-[8px]">
-              10
+            <p className="absolute right-[-8px] bottom-[-8px] w-5  text-center leading-4 bg-yellow-500 text-white aspect-square rounded-full text-[10px]">
+              {getCartCount()}
             </p>
           </Link>
         </div>

@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useEffect, useState } from "react";
+import { createContext,  useState } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import { toast } from "react-toastify";
 
@@ -41,19 +41,44 @@ theme: "colored",
     setCartItem(cartData)
   }
 
+
+
   const getCartCount = ()=>{
     let totalCount = 0;
     for(const items in cartItem){
       for(const item in cartItem[items]){
         try {
           if(cartItem[items][item]>0){
-
+            totalCount += cartItem[items][item]
           }
         } catch (error) {
-          
+         return error
         }
       }
     }
+    return totalCount;
+  }
+  const updateQuentity= async (itemId,size,quantity)=>{
+    let cartData= structuredClone(cartItem);
+    cartData[itemId][size] = quantity
+    setCartItem(cartData);
+  }
+
+  const getCartAmmount =  ()=>{
+    let totalAmmount =0
+    for(const items in cartItem){
+      let itemInfo = products.find((product)=> product._id === items);
+      for(const item in cartItem[items]){
+        try {
+          if(cartItem[items][item] > 0){
+            totalAmmount += itemInfo.price * cartItem[items][item]
+          }
+        } catch (error) {
+          error
+        }
+      }
+    }
+    return totalAmmount
   }
   const value = {
     products,
@@ -63,7 +88,8 @@ theme: "colored",
     setSearch,
     showSearch,
     setShowSearch,
-    cartItem,addToCart
+    cartItem,addToCart,
+    getCartCount, updateQuentity, getCartAmmount
   };
   return (
     <Shopcontext.Provider value={value}>{props.children}</Shopcontext.Provider>
