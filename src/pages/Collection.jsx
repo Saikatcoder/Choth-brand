@@ -5,6 +5,8 @@ import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
 import { useLocation } from "react-router-dom";
 
+
+
 // Inside your component
 
 
@@ -94,7 +96,7 @@ useEffect(() => {
           }}
           className="my-2 text-2xl flex items-center cursor-pointer gap-2 text-white "
         >
-          FILTERS
+          CATEGORIES 
           <img
             src={assets.dropdown_icon}
             className={`h-3 sm:hidden ${showFilter ? "rotate-90" : ""}`}
@@ -139,7 +141,7 @@ useEffect(() => {
 
           {/* Subcategory Filter */}
           <div className="border pl-5 py-3 my-5 text-white">
-            <p className="mb-3 text-sm font-medium">TYPE</p>
+            <p className="mb-3 text-sm font-medium">SUB CAEGORIES</p>
             <div className="flex flex-col gap-2 text-sm font-light text-white">
               <p className="gap-2 flex sm:text-xl text-2xl text-white">
                 <input

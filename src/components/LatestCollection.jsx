@@ -1,38 +1,44 @@
-import React, { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
 import { Shopcontext } from "../context/ShopContext";
-
-const categories = ["Men", "Women", "Kids", "Bottomwear"];
+import Title from "../components/Title";
+import ProductItem from "./ProductItem";
+import { useParams } from "react-router-dom";
 
 const LatestCollection = () => {
-  const navigate = useNavigate();
   const { products } = useContext(Shopcontext);
+  const [latestProducts, setLatestProducts] = useState([]);
 
-  const getCategoryImage = (category) => {
-    const product = products.find((item) => item.category === category);
-    return product ? product.image[0] : "https://via.placeholder.com/300x400";
-  };
+  const { category } = useParams(); // eg: /collection/Men
 
-  const handleClick = (category) => {
-    navigate(`/collection?category=${category}`);
-  };
+  useEffect(() => {
+    let filtered = products;
+
+    if (category) {
+      filtered = products.filter((item) => item.category === category);
+    }
+
+    setLatestProducts(filtered.slice(0, 10));
+  }, [products, category]);
 
   return (
-    <div className="flex flex-wrap justify-center gap-6 py-10">
-      {categories.map((cat, index) => (
-        <div
-          key={index}
-          onClick={() => handleClick(cat)}
-          className="cursor-pointer overflow-hidden rounded-md border-2 border-gray-600 hover:border-white transition"
-        >
-          <img
-            src={getCategoryImage(cat)}
-            alt={cat}
-            className="w-40 h-52 object-cover hover:scale-105 transition-transform duration-300"
+    <div className="my-10">
+      <div className="text-center py-8 text-3xl">
+        <Title text1={category || "Latest"} text2={"Collection"} />
+        <p className="w-3/4 m-auto text-xs sm:text-sm md:text-base text-white">
+          Explore our latest {category || ""} collection specially handpicked for you.
+        </p>
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
+        {latestProducts.map((item, index) => (
+          <ProductItem
+            key={index}
+            id={item._id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
           />
-          <p className="text-center text-white mt-2 font-medium">{cat}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
