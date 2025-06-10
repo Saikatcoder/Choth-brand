@@ -9,18 +9,22 @@ const Product = () => {
   const [productData, setProductData] = useState(false);
   const [image, setImage] = useState("");
   const [size ,setSize] = useState('')
-  const fetchProductData = async () => {
-    products.map((item) => {
-      if (item._id === productId) {
-        setProductData(item);
-        setImage(item.image[0]);
-        return null;
-      }
-    });
-  };
-  useEffect(() => {
-    fetchProductData();
-  }, [productId]);
+const fetchProductData = () => {
+  const found = products.find((item) => item._id === productId);
+  if (found) {
+    setProductData(found);
+    setImage(found.image[0]);
+    setSize(""); // reset selected size
+  } else {
+    setProductData(false);
+  }
+};
+
+ useEffect(() => {
+  window.scrollTo(0, 0); // Optional: Scroll to top
+  fetchProductData();
+}, [productId, products]);
+
   return productData ? (
     <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
       {/* product Data */}
