@@ -64,7 +64,7 @@ const CategoryPage = () => {
       </div>
 
       {/* Product List */}
-      <div className="flex-1">
+      <div className="flex-1 sm:text-2xl">
         <Title  text1={category.toUpperCase()} text2={'PRODUCT'} />
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
           {filteredProducts.map((item) => (
